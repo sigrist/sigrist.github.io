@@ -1,0 +1,40 @@
+title: Programming divination
+email: paulo.sigrist@gmail.com
+description: >
+  My 50 cents about programming.
+baseurl: ""
+url: "http://sigrist.github.io"
+twitter_username: prsigrist
+github_username: sigrist
+markdown: kramdown
+author:
+  name: "Paulo Sigrist"
+  email: paulo.sigrist@gmail.com
+encoding: utf-8
+timezone: America/Sao_Paulo
+permalink: :year/:month/:day/:title.html
+exclude:
+  - README.md
+  - Gemfile.lock
+  - Gemfile
+  - Rakefile
+  - LICENSE.txt
+
+gems:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+
+paginate: 8
+paginate_path: "p/:num"
+excerpt_separator: <!--more-->
+
+feed:
+  title: sigrist.github.io
+  subtitle: My 50 cents about programming.
+  path: rss.xml
+
+sass:
+  style: compressed
+  deploy_style: compressed
+  compile_in_place: false
