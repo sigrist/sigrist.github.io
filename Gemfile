@@ -18,7 +18,7 @@ gem 'jekyll-related-posts', '0.1.2'
 
 gem 'rake', '12.0.0'
 gem 'sass', '3.4.23'
-gem 'nokogiri', '1.7.2'
+gem 'nokogiri', '1.8.2'
 gem 'mail', '2.6.5'
 gem 'uuidtools', '2.1.5'
 gem 'redcarpet', '3.4.0'
