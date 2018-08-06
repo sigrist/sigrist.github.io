@@ -16,7 +16,7 @@ gem 'jekyll-sitemap', '0.11.0'
 gem 'jekyll-redirect-from', '0.11.0'
 # gem 'jekyll-related-posts', '0.1.2'
 
-# gem 'rake', '12.0.0'
+gem 'rake', '12.0.0'
 # gem 'sass', '3.4.23'
 # gem 'nokogiri', '1.8.2'
 # gem 'mail', '2.6.5'

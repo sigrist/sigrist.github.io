@@ -15,14 +15,13 @@ require 'html-proofer'
 task default: [
   :clean,
   :build,
-  :scss_lint,
+  # :scss_lint,
   :pages,
   :garbage,
   :proofer,
   :spell,
   :ping,
-  :orphans,
-  :rubocop
+  :orphans
 ]
 
 def done(msg)
@@ -75,27 +74,6 @@ task garbage: [:build] do
   done 'There is no garbage'
 end
 
-desc 'Validate a few pages for W3C compliance'
-# It doesn't work now, because of: https://github.com/alexdunae/w3c_validators/issues/16
-task w3c: [:build] do
-  include W3CValidators
-  validator = MarkupValidator.new
-  [
-    'index.html',
-    '2016/09/12/first-post.html'
-  ].each do |p|
-    file = "_site/#{p}"
-    results = validator.validate_file(file)
-    if results.errors.length > 0
-      results.errors.each do |err|
-        puts err.to_s
-      end
-      fail "Page #{file} is not W3C compliant"
-    end
-    puts "#{p}: OK"
-  end
-  done 'HTML is W3C compliant'
-end
 
 desc 'Validate a few pages through HTML proofer'
 task proofer: [:build] do
@@ -154,11 +132,11 @@ task orphans: [:build] do
     array + Nokogiri::HTML(File.read(f)).xpath('//a/@href').to_a.map(&:to_s)
   end
   links = links
-    .map { |a| a.gsub(/^\//, 'http://bloghacks.yegor256.com/') }
-    .reject { |a| !a.start_with? 'http://bloghacks.yegor256.com/' }
+    .map { |a| a.gsub(/^\//, 'http://sigrist.github.io/') }
+    .reject { |a| !a.start_with? 'http://sigrist.github.io/' }
     .map { |a| a.gsub(/#.*/, '') }
   links += Dir['_site/**/*.html']
-    .map { |f| f.gsub(/_site/, 'http://bloghacks.yegor256.com') }
+    .map { |f| f.gsub(/_site/, 'http://sigrist.github.io') }
   counts = {}
   links
     .reject { |a| !a.match %r{.*/[0-9]{4}/[0-9]{2}/[0-9]{2}/.*} }
@@ -174,10 +152,4 @@ task orphans: [:build] do
   end
   fail "There are #{orphans} orphans" unless orphans == 0
   done "There are no orphans in #{links.size} links"
-end
-
-desc 'Run RuboCop on all Ruby files'
-RuboCop::RakeTask.new do |t|
-  t.fail_on_error = true
-  t.requires << 'rubocop-rspec'
 end
