@@ -3,7 +3,7 @@
 #
 source 'https://rubygems.org'
 
-gem 'jekyll', '3.8.3'
+gem 'jekyll', '>= 3.8.4'
 gem 'jekyll-feed', '0.7.2'
 gem 'jekyll-bits', '0.14'
 gem 'jekyll-paginate', '1.1.0'
